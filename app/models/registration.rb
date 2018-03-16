@@ -1,3 +1,4 @@
+# This class handles the processing of payments
 class Registration < ActiveRecord::Base
   belongs_to :course
 
@@ -6,9 +7,8 @@ class Registration < ActiveRecord::Base
                                        card: card_token
 
     Stripe::Charge.create customer: customer.id,
-                          amount: course.price*100,
+                          amount: course.price * 100,
                           description: course.name,
                           currency: 'usd'
-
   end
 end
